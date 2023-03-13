@@ -1,12 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Task One</title>
+    <style>
+        fieldset {
+            display: flex;
+            flex-flow: column nowrap;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <section>
+        <form>
+            <fieldset>
+                <legend>Form</legend>
+                <label for="name">Name</label>
+                <input id="name" type="text" />
+                <label for="email">Email</label>
+                <input id="email" type="email" placeholder="email" />
+                <label for="Contact">Contact</label>
+                <input type="tel" id="tel" placeholder="+233" />
+                <label for="password">Password</label>
+                <input type="password" id="pwd" placeholder="" />
+                <label for="sex">Gender</label>
+                <select name="gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </fieldset>
+            <button id='btn' type="submit">Submit</button>
+        </form>
+
+    </section>
+    <script type="text/javascript">
+        document.getElementById('btn')
+            .addEventListener('click', (e) => {
+                e.preventDefault();
+                clickMe(e);
+            })
+
+        function clickMe(e) {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('tel').value;
+            const pwd = document.getElementById('pwd').value;
+            const gender = document.getElementById('gender').value;
+            //Validation
+            if (name == ""){
+                document.getElementById('name').style.borderColor = 'red';
+            }else{
+                document.getElementById('name').style.borderColor = 'green';
+            }
+            if (email == "") {
+                document.getElementById('email').style.borderColor = 'red';
+            }else{
+                document.getElementById('email').style.borderColor = 'green';
+            }
+            if(!validateEmail(email)){
+                alert("Enter a valid email");
+                return;
+            }
+            if (phone == ""){
+                document.getElementById('tel').style.borderColor = 'red';
+            }else{
+                document.getElementById('tel').style.borderColor = 'green';
+            }
+            if (pwd == "") {
+                document.getElementById('pwd').style.borderColor = 'red';
+            }else{
+                document.getElementById('pwd').style.borderColor = 'green';
+            }
+            if (gender == "") {
+                document.getElementById('gender').style.borderColor = 'red';
+            }else{
+                document.getElementById('gender').style.borderColor = 'green';
+            }
+
+
+
+            alert("Data has been successfully submitted");
+        }
+        function validateEmail(email) {
+            var at = email.indexOf("@");
+            var dot = email.lastIndexOf("\.");
+            return email.length > 0 &&
+                at > 0 &&
+                dot > at + 1 &&
+                dot < email.length &&
+                email[at + 1] !== "." &&
+                email.indexOf(" ") === -1 &&
+                email.indexOf("..") === -1;
+        }
+
+    </script>
 </body>
+
 </html>
